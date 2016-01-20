@@ -44,7 +44,9 @@ fs.readfile('listings.json', utf8, function(err, data) {
       });
     }
 
-    listingSchema.save(listing);
+    listing.save(function (err) {
+      if(err) throw err;
+    });
   }
 
 });
