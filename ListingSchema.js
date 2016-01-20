@@ -7,8 +7,13 @@ var listingSchema = new Schema({
   
   code: { type: String, required: true, unique: true },
   name: { type: String, required: true, unique: true },
-  coordinates: String,
-  adress: String,
+  coordinates: {
+    
+    latitude: Number,
+    longitude: Number
+
+  },
+  address: String,
   created_at: Date,
   updated_at: Date
 
@@ -16,6 +21,14 @@ var listingSchema = new Schema({
 
 /* create a 'pre' function that adds the updated_at (and created_at if not already there) property */
 listingSchema.pre('save', function(next) {
+
+  var error = new Error();
+
+  if(!this.name)
+    throw error;
+
+  if(!this.code)
+    throw error;
 
   // get the current date
   var currentDate = new Date();
