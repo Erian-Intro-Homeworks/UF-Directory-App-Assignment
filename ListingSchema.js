@@ -1,10 +1,10 @@
 /* Import mongoose and define any variables needed to create the schema */
-var mongoose = require('mongoose'), 
+var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 /* Create your schema */
 var listingSchema = new Schema({
-  
+
   code: { type: String, required: true, unique: true },
   name: { type: String, required: true, unique: true },
   coordinates: {
@@ -32,7 +32,7 @@ listingSchema.pre('save', function(next) {
 
   // get the current date
   var currentDate = new Date();
-  
+
   // change the updated_at field to current date
   this.updated_at = currentDate;
 
