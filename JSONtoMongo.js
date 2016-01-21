@@ -10,6 +10,9 @@ var fs = require('fs'),
     config = require('./config.js');
 
 /* Connect to your database */
+var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 20000 } },
+                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 20000 } } };
+
 mongoose.connect(config.db.uri);
 
 /*
@@ -49,8 +52,8 @@ fs.readfile('listings.json', 'utf8', function(err, data) {
     });
   }
 
+  done();
 });
-
 
 /*
   Once you've written + run the script, check out your MongoLab database to ensure that
